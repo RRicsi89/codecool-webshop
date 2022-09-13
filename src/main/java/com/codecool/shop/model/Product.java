@@ -5,6 +5,7 @@ import java.util.Currency;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Product extends BaseModel {
 
@@ -61,6 +62,7 @@ public class Product extends BaseModel {
 
     @Override
     public String toString() {
+        String categories = productCategory.stream().map(ProductCategory::getName).collect(Collectors.joining(","));
         return String.format("id: %1$d, " +
                         "name: %2$s, " +
                         "defaultPrice: %3$f, " +
@@ -71,7 +73,7 @@ public class Product extends BaseModel {
                 this.name,
                 this.defaultPrice,
                 this.defaultCurrency.toString(),
-                this.productCategory.getName(),
+                categories,
                 this.supplier.getName());
     }
 }
