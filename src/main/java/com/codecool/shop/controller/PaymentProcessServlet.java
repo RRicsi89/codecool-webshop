@@ -22,7 +22,6 @@ public class PaymentProcessServlet extends HttpServlet {
 
         while (params.hasMoreElements()) {
             String param = params.nextElement();
-            System.out.println(param + "\n");
             paramNames.add(param);
         }
 
