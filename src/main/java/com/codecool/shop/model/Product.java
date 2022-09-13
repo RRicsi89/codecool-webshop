@@ -2,20 +2,24 @@ package com.codecool.shop.model;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Product extends BaseModel {
 
     private BigDecimal defaultPrice;
     private Currency defaultCurrency;
-    private ProductCategory productCategory;
+    private Set<ProductCategory> productCategory = new HashSet<>();
     private Supplier supplier;
 
 
-    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, Supplier supplier, ProductCategory ...args) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
-        this.setProductCategory(productCategory);
+        this.productCategory.addAll(List.of(args));
     }
 
     public BigDecimal getDefaultPrice() {
@@ -43,13 +47,8 @@ public class Product extends BaseModel {
         this.defaultCurrency = Currency.getInstance(currency);
     }
 
-    public ProductCategory getProductCategory() {
+    public Set<ProductCategory> getProductCategory() {
         return productCategory;
-    }
-
-    public void setProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
-        this.productCategory.addProduct(this);
     }
 
     public Supplier getSupplier() {
@@ -63,6 +62,7 @@ public class Product extends BaseModel {
 
     @Override
     public String toString() {
+        String categories = productCategory.stream().map(ProductCategory::getName).collect(Collectors.joining(","));
         return String.format("id: %1$d, " +
                         "name: %2$s, " +
                         "defaultPrice: %3$f, " +
@@ -73,7 +73,7 @@ public class Product extends BaseModel {
                 this.name,
                 this.defaultPrice,
                 this.defaultCurrency.toString(),
-                this.productCategory.getName(),
+                categories,
                 this.supplier.getName());
     }
 }
