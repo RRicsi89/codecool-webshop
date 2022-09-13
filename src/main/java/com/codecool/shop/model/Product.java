@@ -2,20 +2,23 @@ package com.codecool.shop.model;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Product extends BaseModel {
 
     private BigDecimal defaultPrice;
     private Currency defaultCurrency;
-    private ProductCategory productCategory;
+    private Set<ProductCategory> productCategory = new HashSet<>();
     private Supplier supplier;
 
 
-    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, Supplier supplier, ProductCategory ...args) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
-        this.setProductCategory(productCategory);
+        this.productCategory.addAll(List.of(args));
     }
 
     public BigDecimal getDefaultPrice() {
