@@ -5,6 +5,48 @@
     justify-content: space-around;
 }
 
+.layer {
+    position: absolute;
+    z-index: 50;
+    width: 100vw;
+    height: 100vh;
+    background-color: dimgrey;
+    opacity: 50%;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    position: center;
+    z-index: 100;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: dimgrey;
+    width: 40vw;
+    height: max-content;
+    border-radius: 10px;
+    border: white solid 3px;
+}
+
+.modal-body {
+    display: flex;
+}
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.modal-header {
+    font-size: 40px;
+}
+
 .payment-btn {
     width: 20vw;
     height: 10vh;
@@ -18,4 +60,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.submit-btn, .cancel-btn {
+    font-size: 25px;
+    border-radius: 5px;
+    padding: 10px 20px;
 }
