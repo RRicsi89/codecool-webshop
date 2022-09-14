@@ -28,7 +28,7 @@ public class PaymentProcessServlet extends HttpServlet {
         Order order = Order.getInstance();
 
         if (response.getStatus() == 200) {
-//            context.setVariable("order", orderId);
+            context.setVariable("cart", order.getCart());
             // TODO send email
             Logger.logToFile(order, true);
             engine.process("product/confirmation.html", context, response.getWriter());
