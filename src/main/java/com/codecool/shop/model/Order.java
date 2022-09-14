@@ -8,6 +8,7 @@ import java.util.UUID;
 public class Order {
     private List<Item> cart;
     private final UUID id = UUID.randomUUID();
+    private User user;
 
     private static Order instance = null;
 
@@ -76,6 +77,14 @@ public class Order {
 
     public UUID getId() {
         return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public static void deleteOrder() {
