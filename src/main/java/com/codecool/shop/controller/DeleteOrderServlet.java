@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = {"/order/delete"})
+@WebServlet(urlPatterns = {"/api/order/delete"})
 public class DeleteOrderServlet extends HttpServlet {
 
     @Override

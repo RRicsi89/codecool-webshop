@@ -10,7 +10,7 @@ import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/process-payment"})
+@WebServlet(urlPatterns = {"/api/process-payment"})
 public class PaymentProcessServlet extends HttpServlet {
 
     @Override

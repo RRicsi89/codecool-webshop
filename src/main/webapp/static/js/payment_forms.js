@@ -39,7 +39,7 @@ function createModalBodyForCredit() {
     const modalBody = document.createElement("div");
     modalBody.classList.add("modal-body");
     modalBody.innerHTML =
-        "<form id='payment-form' action='/process-payment' method='POST'>" +
+        "<form id='payment-form' action='/api/process-payment' method='POST'>" +
             "<label for='card-number'>Card number</label></br>" +
             "<input type='number' name='card-number' id='card-number' required></br></br>" +
             "<label for='card-holder'>Card holder</label></br>" +
@@ -56,7 +56,7 @@ function createModalBodyForPayPal() {
     const modalBody = document.createElement("div");
     modalBody.classList.add("modal-body");
     modalBody.innerHTML =
-        "<form id='payment-form' action='/process-payment' method='POST'>" +
+        "<form id='payment-form' action='/api/process-payment' method='POST'>" +
             "<label for='username'>Username</label></br>" +
             "<input type='text' name='username' id='username' required></br></br>" +
             "<label for='password'>Password</label></br>" +
