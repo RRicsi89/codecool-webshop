@@ -2,10 +2,12 @@ package com.codecool.shop.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class Order {
     private List<Item> cart;
+    private final UUID id = UUID.randomUUID();
 
     private static Order instance = null;
 
@@ -70,5 +72,9 @@ public class Order {
                 return;
             }
         }
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
