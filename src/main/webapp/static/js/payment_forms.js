@@ -1,10 +1,10 @@
-function createCreditCardForm(paymentType) {
+function createCreditCardForm(paymentType, headerMsg) {
 
     const modalContainer = document.createElement("div");
     modalContainer.classList.add("modal");
 
     const modalHeader = document.createElement("div");
-    modalHeader.innerText = "Credit Card Information";
+    modalHeader.innerText = headerMsg;
     modalHeader.classList.add("modal-header");
 
     const modalFooter = document.createElement("div");
@@ -68,7 +68,7 @@ function createModalBodyForPayPal() {
 function applyEventListenerToCreditBtn() {
     const creditBtn = document.querySelector("#credit-btn");
     creditBtn.addEventListener("click", () => {
-        const modal = createCreditCardForm("creditCard");
+        const modal = createCreditCardForm("creditCard", "Credit Card Information");
         const layer = document.createElement("div");
         layer.classList.add("layer");
         document.body.appendChild(modal);
@@ -84,7 +84,7 @@ function applyEventListenerToCreditBtn() {
 function applyEventListenerToPayPalBtn() {
     const paypalBtn = document.querySelector("#paypal-btn");
     paypalBtn.addEventListener("click", () => {
-        const modal = createCreditCardForm("paypal");
+        const modal = createCreditCardForm("paypal", "PayPal Account Information");
         const layer = document.createElement("div");
         layer.classList.add("layer");
         document.body.appendChild(modal);
