@@ -21,7 +21,6 @@ public class Logger {
         LogOrder logOrder = createLogOrder(order, successful);
 
         String logData = new Gson().toJson(logOrder);
-        System.out.println(logData);
 
         try {
             File file = new File(filePath.toString());
