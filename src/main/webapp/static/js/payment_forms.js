@@ -142,10 +142,24 @@ function applyEventListenerToCancelOrderBtn() {
         })
 
         confirmBtn.addEventListener("click", async function() {
-            await fetch("/order/delete", {method: "DELETE"});
+            const orderId = 1;
+            let response = await fetchDelete(orderId);
+            if (response.status === 200) {
+                window.location = "/";
+            } else {
+                alert("Deletion of Order unsuccessful");
+                popup.remove();
+                layer.remove();
+            }
         })
 
     })
+}
+
+async function fetchDelete(orderId) {
+    let response = await fetch(`api//order/delete?orderId=${orderId}`,
+        {method: "DELETE"});
+    return response;
 }
 
 function main() {
