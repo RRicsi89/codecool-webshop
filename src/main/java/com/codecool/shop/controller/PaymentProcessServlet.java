@@ -1,6 +1,8 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.log.Logger;
+import com.codecool.shop.model.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -23,13 +25,15 @@ public class PaymentProcessServlet extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
+        Order order = Order.getInstance();
 
         if (response.getStatus() == 200) {
-//            context.setVariable("order", orderId);
+            context.setVariable("cart", order.getCart());
             // TODO send email
-            // TODO export to JSON
+            Logger.logToFile(order, true);
             engine.process("product/confirmation.html", context, response.getWriter());
         } else {
+            Logger.logToFile(order, false);
             response.sendRedirect("/payment");
         }
 

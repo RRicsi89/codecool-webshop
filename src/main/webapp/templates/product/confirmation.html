@@ -20,6 +20,7 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="/static/css/payment.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/confirm_page.css" />
 
 </head>
 
@@ -31,6 +32,23 @@
         <a href="/">
             <button class="home-btn">Return to main page</button>
         </a>
+    </div>
+
+    <div id="order-details">
+        <table id="order-table">
+            <thead>
+                <th class="table-header">Product name</th>
+                <th class="table-header">Quantity</th>
+                <th class="table-header">Total price</th>
+            </thead>
+            <tbody>
+                <tr th:each="item: ${cart}">
+                    <td th:text="${item.product.getName()}" class="table-data"></td>
+                    <td th:text="${item.quantity}" class="table-data"></td>
+                    <td th:text="${item.totalPrice}" class="table-data"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
