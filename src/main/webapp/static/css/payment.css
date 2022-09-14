@@ -20,6 +20,16 @@
     font-size: 25px; !important;
 }
 
+.home-link {
+    padding: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
 .layer {
     position: absolute;
     z-index: 50;
@@ -29,6 +39,20 @@
     opacity: 50%;
     top: 0;
     left: 0;
+}
+
+.order-success {
+    position: relative;
+    display: flex;
+    margin: auto;
+    top: 20vh;
+    left: 0;
+    right: 0;
+    justify-content: center;
+}
+
+.order-success h1 {
+    font-size: 40px;
 }
 
 .modal {

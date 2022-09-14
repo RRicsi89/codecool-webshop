@@ -1,5 +1,9 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.config.TemplateEngineUtil;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,23 +20,13 @@ public class PaymentProcessServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
-        Enumeration<String> params = request.getParameterNames();
-        List<String> paramNames = new LinkedList<>();
-        boolean paymentAccepted = false;
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
+        WebContext context = new WebContext(request, response, request.getServletContext());
 
-        while (params.hasMoreElements()) {
-            String param = params.nextElement();
-            paramNames.add(param);
-        }
-
-        if (paramNames.size() > 2) {
-            paymentAccepted = true;
-        }
-
-        if (paymentAccepted) {
-            response.sendRedirect("/");
+        if (response.getStatus() == 200) {
+            engine.process("product/confirmation.html", context, response.getWriter());
         } else {
-            response.sendRedirect("payment");
+            response.sendRedirect("/payment");
         }
 
     }
