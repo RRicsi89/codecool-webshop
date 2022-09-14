@@ -77,4 +77,8 @@ public class Order {
     public UUID getId() {
         return id;
     }
+
+    public static void deleteOrder() {
+        instance = null;
+    }
 }
