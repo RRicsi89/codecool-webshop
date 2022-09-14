@@ -1,6 +1,7 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.model.Order;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet(urlPatterns = {"/payment"})
 public class PaymentSelectorServlet extends HttpServlet {
@@ -17,10 +19,8 @@ public class PaymentSelectorServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String totalPrice = "50.000";
-        if (request.getParameter("totalPrice") != null) {
-            totalPrice = request.getParameter("totalPrice");
-        }
+        Order order = Order.getInstance();
+        BigDecimal totalPrice = order.getTotalValue();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
