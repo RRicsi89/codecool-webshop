@@ -97,9 +97,61 @@ function applyEventListenerToPayPalBtn() {
     })
 }
 
+function createConfirmationWindow(msg) {
+    const modalContainer = document.createElement("div");
+    modalContainer.classList.add("modal");
+
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("modal-body");
+
+    modalBody.innerText = msg;
+    modalBody.style.fontSize = "30px";
+
+    const modalFooter = document.createElement("div");
+    modalFooter.classList.add("modal-footer");
+    const confirmBtn = document.createElement("button");
+    confirmBtn.classList.add("confirm-btn", "popup-btn");
+    confirmBtn.innerText = "Yes";
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("cancel-confirm-btn", "popup-btn");
+    cancelBtn.innerText = "Cancel";
+    modalFooter.appendChild(confirmBtn);
+    modalFooter.appendChild(cancelBtn);
+
+    modalContainer.appendChild(modalBody);
+    modalContainer.appendChild(modalFooter);
+
+    return modalContainer;
+}
+
+function applyEventListenerToCancelOrderBtn() {
+    const cancelOrderBtn = document.querySelector("#cancel-order-btn");
+    cancelOrderBtn.addEventListener("click", () => {
+        const popup = createConfirmationWindow("Are you sure to delete order?");
+        const layer = document.createElement("div");
+        layer.classList.add("layer");
+        document.body.appendChild(layer);
+        document.body.appendChild(popup);
+
+        const confirmBtn = document.querySelector(".confirm-btn");
+        const cancelBtn = document.querySelector(".cancel-confirm-btn");
+
+        cancelBtn.addEventListener("click", () => {
+            popup.remove();
+            layer.remove();
+        })
+
+        confirmBtn.addEventListener("click", async function() {
+            await fetch("/order/delete", {method: "DELETE"});
+        })
+
+    })
+}
+
 function main() {
     applyEventListenerToCreditBtn();
     applyEventListenerToPayPalBtn();
+    applyEventListenerToCancelOrderBtn();
 }
 
 main();
