@@ -145,6 +145,8 @@ function applyEventListenerToCancelOrderBtn() {
             const orderId = 1;
             let response = await fetchDelete(orderId);
             if (response.status === 200) {
+                popup.remove();
+                layer.remove();
                 window.location = "/";
             } else {
                 alert("Deletion of Order unsuccessful");
@@ -157,7 +159,7 @@ function applyEventListenerToCancelOrderBtn() {
 }
 
 async function fetchDelete(orderId) {
-    let response = await fetch(`api//order/delete?orderId=${orderId}`,
+    let response = await fetch(`api/order/delete?orderId=${orderId}`,
         {method: "DELETE"});
     return response;
 }
