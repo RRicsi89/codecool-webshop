@@ -24,10 +24,10 @@ public class ValidateUserServlet extends HttpServlet {
                 request.getParameter("b-address"));
         Address shipping;
 
-        if (request.getParameter("sh-country") == null
-                || request.getParameter("sh-city") == null
-                || request.getParameter("sh-zipcode") == null
-                || request.getParameter("sh-address") == null) {
+        if (request.getParameter("sh-country").equals("")
+                || request.getParameter("sh-city").equals("")
+                || request.getParameter("sh-zipcode").equals("")
+                || request.getParameter("sh-address").equals("")) {
             shipping = billing;
         } else {
             shipping = new Address(request.getParameter("sh-country"),

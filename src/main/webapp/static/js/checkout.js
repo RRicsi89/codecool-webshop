@@ -48,25 +48,25 @@ function createModalBody() {
 
         "<div class='checkout-col'>" +
         "<label>Billing Address</label></br></br>" +
-        "<label for='b-country'>CCV coder</label></br>" +
+        "<label for='b-country'>Country</label></br>" +
         "<input type='text' name='b-country' id='b-country' required></br></br>" +
-        "<label for='b-city'>CCV coder</label></br>" +
+        "<label for='b-city'>City</label></br>" +
         "<input type='text' name='b-city' id='b-city' required></br></br>" +
-        "<label for='b-zipcode'>CCV coder</label></br>" +
+        "<label for='b-zipcode'>Zip Code</label></br>" +
         "<input type='number' name='b-zipcode' id='b-zipcode' required></br></br>" +
-        "<label for='b-address'>CCV coder</label></br>" +
+        "<label for='b-address'>Addressr</label></br>" +
         "<input type='text' name='b-address' id='b-address' required></br></br>" +
         "</div>" +
 
         "<div class='checkout-col'>" +
         "<label>Shipping Address(optional)</label></br></br>" +
-        "<label for='sh-country'>CCV coder</label></br>" +
+        "<label for='sh-country'>Country</label></br>" +
         "<input type='text' name='sh-country' id='sh-country'></br></br>" +
-        "<label for='sh-city'>CCV coder</label></br>" +
+        "<label for='sh-city'>City</label></br>" +
         "<input type='text' name='sh-city' id='sh-city'></br></br>" +
-        "<label for='sh-zipcode'>CCV coder</label></br>" +
+        "<label for='sh-zipcode'>Zip Code</label></br>" +
         "<input type='number' name='sh-zipcode' id='sh-zipcode'></br></br>" +
-        "<label for='sh-address'>CCV coder</label></br>" +
+        "<label for='sh-address'>Addressr</label></br>" +
         "<input type='text' name='sh-address' id='sh-address'></br></br>" +
         "</div>" +
         "</form>"
