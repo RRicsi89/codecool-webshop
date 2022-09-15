@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Codecool Shop</title>
+    <title>Codecool Cart</title>
 
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
@@ -19,7 +19,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
@@ -27,53 +27,39 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
-
-    <script src="static/js/main.js" defer></script>
-
+    <link rel="stylesheet" type="text/css" href="/static/css/payment.css" />
     <script src="../../static/js/Cart.js" defer></script>
+    <script src="/static/js/checkout.js" defer></script>
 
 </head>
-
 <body>
 <header>
     <div class="jumbotron text-center">
         <h1>Codecool Shop</h1>
-        <a class="btn btn-success fa fa-shopping-cart cart" href="/cart"></a>
+        <a class="btn btn-success fa fa-shopping-cart" href="/">Back to shop</a>
+        <button class="btn btn-success" id="checkout-btn">Checkout</button>
     </div>
 </header>
 <div class="container">
     <div class="card">
     </div>
 
-    <div>
-        <strong>Select a category</strong>
-        <select id="category-selector" onchange="handleCategory()">
-            <option th:each="category: ${categories}" th:text="${category.getName()}"
-                    th:classappend="${'category-selector'}"></option>
-        </select>
-    </div>
-
-    <div>
-        <strong>Select a supplier</strong>
-        <select id="supplier-selector" onchange="handleSupplier()">
-            <option th:each="supplier: ${suppliers}" th:text="${supplier.getName()}"></option>
-        </select>
-    </div>
-
     <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+        <div class="col col-sm-12 col-md-6 col-lg-4" th:name="${prod.product.id}" th:each="prod,iterStat : ${products}">
             <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_1.jpg'" alt="" />
+                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.product.id} + '.jpg'" alt="" />
                 <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text desc" th:text="${prod.description}">Product description... </p>
+                    <h4 class="card-title" th:text="${prod.product.getName()}">Product name</h4>
+                    <p class="card-text" th:name="${prod.product.id}" th:text="${prod.quantity}">Product description... </p>
+                    <a class="opt edit-quantity" th:id="${prod.product.id}"><img src="https://banner2.cleanpng.com/20180329/kje/kisspng-computer-icons-download-button-symbol-plus-5abd9e3ed95b29.3600526615223762548903.jpg"  width="20" height="20" alt=""/></a>
+                    <a class="opt edit-quantity" th:id="${-prod.product.id}"><img src="https://pic.onlinewebfonts.com/svg/img_25607.png"  width="20" height="20" alt=""/></a>
+
                 </div>
                 <div class="card-body">
                     <div class="card-text">
-                        <p class="lead price" th:text="${prod.getPrice()}">100 USD</p>
+                        <p class="lead" th:name="${prod.product.id}" th:text="${prod.totalPrice}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success add-to-cart" th:id="${prod.id}">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -81,8 +67,5 @@
     </div>
 
 </div>
-
-<div th:replace="footer.html :: copy"></div>
-
 </body>
 </html>

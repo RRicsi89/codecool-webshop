@@ -19,6 +19,7 @@
         <version.plugin.jetty>9.4.30.v20200611</version.plugin.jetty>
         <version.javax.servlet.api>4.0.1</version.javax.servlet.api>
         <version.thymeleaf>3.0.11.RELEASE</version.thymeleaf>
+        <version.gson>2.8.5</version.gson>
     </properties>
 
     <build>
@@ -45,16 +46,22 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${version.plugin.jetty}</version>
                 <configuration>
-                    <!-- On some configs this causes shutdown of context on -->
-                    <!-- a page load so disabled. -->
-                    <!-- <reload>automatic</reload> -->
-                    <!-- <scanIntervalSeconds>1</scanIntervalSeconds> -->
+<!--                     On some configs this causes shutdown of context on -->
+<!--                     a page load so disabled. -->
+                     <reload>automatic</reload>
+                     <scanIntervalSeconds>1</scanIntervalSeconds>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
+
     <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${version.gson}</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

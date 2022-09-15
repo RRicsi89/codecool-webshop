@@ -1,0 +1,130 @@
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cancel-order-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 10vh;
+}
+
+.checkout-col {
+    padding: 20px;
+}
+
+#checkout-form {
+    display: flex;
+    flex-direction: row;
+}
+
+#cancel-order-btn {
+    font-size: 25px; !important;
+}
+
+.error-msg {
+    position: center;
+    display: flex;
+    margin: -10vh auto auto auto;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.home-link {
+    padding: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+.layer {
+    position: absolute;
+    z-index: 50;
+    width: 100vw;
+    height: 100vh;
+    background-color: dimgrey;
+    opacity: 50%;
+    top: 0;
+    left: 0;
+}
+
+.order-success {
+    position: relative;
+    display: flex;
+    margin: auto;
+    top: 20vh;
+    left: 0;
+    right: 0;
+    justify-content: center;
+}
+
+.order-success h1 {
+    font-size: 40px;
+}
+
+.modal {
+    position: center;
+    z-index: 100;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: dimgrey;
+    width: max-content;
+    height: max-content;
+    border-radius: 10px;
+    border: white solid 3px;
+}
+
+.modal-body {
+    display: flex;
+}
+
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.modal-header {
+    font-size: 40px;
+}
+
+.payment-btn {
+    width: 20vw;
+    height: 10vh;
+    border-radius: 10px;
+    margin: 0 20px;
+    font-size: 30px;
+}
+
+.popup-btn {
+    font-size: 20px;
+    min-width: 10vw;
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-btn, .cancel-btn {
+    font-size: 25px;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
