@@ -27,7 +27,11 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+
+    <script src="static/js/main.js" defer></script>
+
     <script src="../../static/js/Cart.js" defer></script>
+
 </head>
 
 <body>
@@ -39,20 +43,34 @@
 </header>
 <div class="container">
     <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    </div>
+
+    <div>
+        <strong>Select a category</strong>
+        <select id="category-selector" onchange="handleCategory()">
+            <option th:each="category: ${categories}" th:text="${category.getName()}"
+                    th:classappend="${'category-selector'}"></option>
+        </select>
+    </div>
+
+    <div>
+        <strong>Select a supplier</strong>
+        <select id="supplier-selector" onchange="handleSupplier()">
+            <option th:each="supplier: ${suppliers}" th:text="${supplier.getName()}"></option>
+        </select>
     </div>
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_1.jpg'" alt="" />
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
+                    <p class="card-text desc" th:text="${prod.description}">Product description... </p>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        <p class="lead price" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
                         <a class="btn btn-success add-to-cart" th:id="${prod.id}">Add to cart</a>
