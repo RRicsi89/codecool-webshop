@@ -54,7 +54,7 @@ function createModalBody() {
         "<input type='text' name='b-city' id='b-city' required></br></br>" +
         "<label for='b-zipcode'>Zip Code</label></br>" +
         "<input type='number' name='b-zipcode' id='b-zipcode' required></br></br>" +
-        "<label for='b-address'>Addressr</label></br>" +
+        "<label for='b-address'>Address</label></br>" +
         "<input type='text' name='b-address' id='b-address' required></br></br>" +
         "</div>" +
 
@@ -66,7 +66,7 @@ function createModalBody() {
         "<input type='text' name='sh-city' id='sh-city'></br></br>" +
         "<label for='sh-zipcode'>Zip Code</label></br>" +
         "<input type='number' name='sh-zipcode' id='sh-zipcode'></br></br>" +
-        "<label for='sh-address'>Addressr</label></br>" +
+        "<label for='sh-address'>Address</label></br>" +
         "<input type='text' name='sh-address' id='sh-address'></br></br>" +
         "</div>" +
         "</form>"
