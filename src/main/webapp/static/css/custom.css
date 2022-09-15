@@ -66,3 +66,23 @@
     border: none;
     background: transparent;
 }
+
+
+.header {
+    background: #ffffff;
+    padding: 10px;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background: #eecda3;
+    background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+    background: linear-gradient(to right, #eecda3, #ef629f);
+    min-height: 100vh;
+}
+
+footer {
+    background: #ffffff;
+
+}
