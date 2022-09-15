@@ -41,15 +41,19 @@
     </div>
 
     <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+        <div class="col col-sm-12 col-md-6 col-lg-4" th:name="${prod.product.id}" th:each="prod,iterStat : ${products}">
             <div class="card">
+                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.product.id} + '.jpg'" alt="" />
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.product.getName()}">Product name</h4>
-                    <p class="card-text" th:text="${prod.quantity}">Product description... </p>
+                    <p class="card-text" th:name="${prod.product.id}" th:text="${prod.quantity}">Product description... </p>
+                    <a class="opt edit-quantity" th:id="${prod.product.id}"><img src="https://banner2.cleanpng.com/20180329/kje/kisspng-computer-icons-download-button-symbol-plus-5abd9e3ed95b29.3600526615223762548903.jpg"  width="20" height="20" alt=""/></a>
+                    <a class="opt edit-quantity" th:id="${-prod.product.id}"><img src="https://pic.onlinewebfonts.com/svg/img_25607.png"  width="20" height="20" alt=""/></a>
+
                 </div>
                 <div class="card-body">
                     <div class="card-text">
-                        <p class="lead" th:text="${prod.totalPrice}">100 USD</p>
+                        <p class="lead" th:name="${prod.product.id}" th:text="${prod.totalPrice}">100 USD</p>
                     </div>
                     <div class="card-text">
                     </div>

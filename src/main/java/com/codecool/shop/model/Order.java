@@ -20,12 +20,29 @@ public class Order {
         return instance;
     }
 
-    public int getItemQuantity() {
+    public Integer getItemQuantity (Product product) {
+        for (Item item: cart) {
+            if (item.product.equals(product)) {
+                return item.quantity;
+            }
+        }
+        return 0;
+    }
+
+    public Integer getItemsQuantity() {
         int quantity = 0;
         for (Item item: cart) {
             quantity += item.quantity;
         }
         return quantity;
+    }
+    public BigDecimal getItemsTotalValue(Product product) {
+        for (Item item: cart) {
+            if (item.product.equals(product)) {
+                return item.totalPrice;
+            }
+        }
+        return BigDecimal.ZERO;
     }
 
     public BigDecimal getTotalValue() {
@@ -50,13 +67,13 @@ public class Order {
     }
 
 
-    public void changeProductQuantity(Product product, Integer quantity) {
+    public void descentProductQuantity(Product product) {
         for (Item item: cart) {
             if (item.product.equals(product)) {
-                if (quantity > 0) {
-                    item.setQuantity(quantity);
+                if (item.quantity -1 > 0) {
+                    item.setQuantity(item.quantity - 1);
                 } else {
-                    cart.remove(item);
+                    removeItem(item.product);
                 }
                 return;
             }
