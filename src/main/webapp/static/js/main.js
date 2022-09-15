@@ -1,3 +1,10 @@
+async function getProductsBySupplier() {
+    const supplierSelector = document.getElementById("supplier-selector");
+    const response = await apiGet("/supplier?name=" + supplierSelector.value);
+    return await response;
+}
+
+
 async function handleSupplier() {
     const products = await getProductsBySupplier();
     cardBuilder(products);
