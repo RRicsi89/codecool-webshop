@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.http.HttpHeaders;
 
 @WebServlet(urlPatterns = {"/payment"})
 public class PaymentSelectorServlet extends HttpServlet {
@@ -26,8 +27,9 @@ public class PaymentSelectorServlet extends HttpServlet {
         WebContext context = new WebContext(request, response, request.getServletContext());
         context.setVariable("total", totalPrice);
         boolean redirected = false;
+        System.out.println(request.getHeader("Referer"));
 
-        if (request.getMethod().equals("GET")) {
+        if (request.getHeader("Referer").equals("http://localhost:8080/payment")) {
             redirected = true;
         }
         context.setVariable("redirected", redirected);
