@@ -60,3 +60,9 @@
 {
     margin: 0 0 11px;
 }
+
+.opt {
+    z-index: 15;
+    border: none;
+    background: transparent;
+}
