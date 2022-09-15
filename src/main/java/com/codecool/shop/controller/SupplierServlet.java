@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "CategoriesServlet", urlPatterns = "/supplier")
+@WebServlet(name = "SupplierServlet", urlPatterns = {"/supplier"})
 public class SupplierServlet extends HttpServlet {
 
     @Override
