@@ -35,6 +35,7 @@ function createModalBody() {
     modalBody.classList.add("modal-body");
     modalBody.innerHTML =
         "<form id='checkout-form' action='/api/user-validation' method='POST'>" +
+        "<div class='checkout-col'>" +
         "<label for='username'>Name</label></br>" +
         "<input type='text' name='username' id='username' required></br></br>" +
 
@@ -43,7 +44,9 @@ function createModalBody() {
 
         "<label for='phone'>Phone number</label></br>" +
         "<input type='number' name='phone' id='phone' required></br></br>" +
+        "</div>" +
 
+        "<div class='checkout-col'>" +
         "<label>Billing Address</label></br></br>" +
         "<label for='b-country'>CCV coder</label></br>" +
         "<input type='text' name='b-country' id='b-country' required></br></br>" +
@@ -53,7 +56,9 @@ function createModalBody() {
         "<input type='number' name='b-zipcode' id='b-zipcode' required></br></br>" +
         "<label for='b-address'>CCV coder</label></br>" +
         "<input type='text' name='b-address' id='b-address' required></br></br>" +
+        "</div>" +
 
+        "<div class='checkout-col'>" +
         "<label>Shipping Address(optional)</label></br></br>" +
         "<label for='sh-country'>CCV coder</label></br>" +
         "<input type='text' name='sh-country' id='sh-country'></br></br>" +
@@ -63,6 +68,7 @@ function createModalBody() {
         "<input type='number' name='sh-zipcode' id='sh-zipcode'></br></br>" +
         "<label for='sh-address'>CCV coder</label></br>" +
         "<input type='text' name='sh-address' id='sh-address'></br></br>" +
+        "</div>" +
         "</form>"
     return modalBody;
 }
