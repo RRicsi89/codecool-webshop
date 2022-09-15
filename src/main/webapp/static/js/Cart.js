@@ -18,12 +18,13 @@ async function ChangeCart(productId) {
 editQuantityButton.forEach(button => button.addEventListener('click', async function () {
     let id = button.id
     let data = await ChangeCart(id)
-    if (data[0] == 0) {
+    if (data[0] === 0) {
         document.getElementsByName(Math.abs(id))[0].remove()
     } else {
-        document.getElementsByName(Math.abs(id))[1].textContent = data[0]
-        document.getElementsByName(Math.abs(id))[2].textContent = data[1]
+        document.getElementsByName(Math.abs(id))[1].textContent = data[1]
+        document.getElementsByName(Math.abs(id))[2].textContent = data[0]
     }
+    document.getElementById("checkout-btn").textContent = data[2]
 }))
 
 
