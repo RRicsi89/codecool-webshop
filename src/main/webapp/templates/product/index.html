@@ -37,17 +37,15 @@
 <body>
 <header>
     <div class="jumbotron text-center header">
-        <h1>Codecool Shop</h1>
+        <h1>Lootbox Shop</h1>
         <a class="btn btn-success fa fa-shopping-cart cart" href="/cart"></a>
     </div>
 </header>
 <div class="container">
-    <div class="card">
-    </div>
-
     <div>
         <strong>Select a category</strong>
         <select id="category-selector" onchange="handleCategory()">
+            <option>default</option>
             <option th:each="category: ${categories}" th:text="${category.getName()}"
                     th:classappend="${'category-selector'}"></option>
         </select>
@@ -56,14 +54,15 @@
     <div>
         <strong>Select a supplier</strong>
         <select id="supplier-selector" onchange="handleSupplier()">
+            <option>default</option>
             <option th:each="supplier: ${suppliers}" th:text="${supplier.getName()}"></option>
         </select>
     </div>
 
     <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+        <div class="col col-sm-12 col-md-6 col-lg-4 padding" th:each="prod,iterStat : ${products}">
             <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_1.jpg'" alt="" />
+                <img src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text desc" th:text="${prod.description}">Product description... </p>

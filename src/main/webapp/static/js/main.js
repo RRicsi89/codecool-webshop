@@ -28,6 +28,7 @@ function cardBuilder(products) {
     const productsDiv = document.getElementById("products");
     productsDiv.innerHTML = "";
     for(let product of products) {
+        const mainDiv =elementCreator("div", "col")
         const card = elementCreator("div", "card");
         const image = elementCreator("img", "image");
         const cardHeader = elementCreator("div", "card-header");
@@ -43,8 +44,12 @@ function cardBuilder(products) {
         cartButton.id = product.id;
         cardHeaderText.classList.add("price");
         cardHeaderText.classList.add("desc");
+        mainDiv.classList.add("col-sm-12");
+        mainDiv.classList.add("col-md-6");
+        mainDiv.classList.add("col-lg-4");
+        mainDiv.classList.add("padding");
 
-        image.src = "/static/img/product_1.jpg";
+        image.src = "/static/img/product_"+product.id+".jpg";
         cardTitle.textContent = product.name;
         cardHeaderText.textContent = product.description;
         cardBodyText.textContent = product.defaultPrice;
@@ -66,7 +71,8 @@ function cardBuilder(products) {
         cardBody.appendChild(cartBtnContainer);
         cartBtnContainer.appendChild(cartButton);
         cardBodyTextCont.appendChild(cardBodyText);
-        productsDiv.appendChild(card);
+        mainDiv.appendChild(card);
+        productsDiv.appendChild(mainDiv);
     }
 }
 
