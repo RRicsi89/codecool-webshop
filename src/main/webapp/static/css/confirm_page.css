@@ -1,0 +1,15 @@
+.table-data {
+    width: 20vw;
+}
+
+.table-header {
+    width: 20vw;
+    border-bottom: gray solid 2px;
+}
+
+#order-details {
+    margin-top: 15vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
