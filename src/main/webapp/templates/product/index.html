@@ -36,7 +36,21 @@
 
 <div class="container">
     <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    </div>
+
+    <div>
+        <strong>Select a category</strong>
+        <select id="category-selector" onchange="handleCategory()">
+            <option th:each="category: ${categories}" th:text="${category.getName()}"
+                    th:classappend="${'category-selector'}"></option>
+        </select>
+    </div>
+
+    <div>
+        <strong>Select a supplier</strong>
+        <select id="supplier-selector" onchange="handleSupplier()">
+            <option th:each="supplier: ${suppliers}" th:text="${supplier.getName()}"></option>
+        </select>
     </div>
 
     <div id="products" class="row">
