@@ -1,3 +1,10 @@
+async function getProductsByCategory() {
+    const categorySelector = document.getElementById("category-selector");
+    let response = await apiGet("/categories?name=" + categorySelector.value);
+    return await response;
+}
+
+
 async function getProductsBySupplier() {
     const supplierSelector = document.getElementById("supplier-selector");
     const response = await apiGet("/supplier?name=" + supplierSelector.value);
