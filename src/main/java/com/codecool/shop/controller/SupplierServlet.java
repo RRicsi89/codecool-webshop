@@ -24,13 +24,20 @@ public class SupplierServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String parameter = request.getParameter("name");
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDaoMem supplierService = SupplierDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierService);
-        List<Product> products = productService.getProductsForSupplier(parameter);
-        Gson gson = new Gson();
-        PrintWriter out = response.getWriter();
-        out.write(gson.toJson(products));
+        if (!parameter.equals("default")) {
+            ProductDao productDataStore = ProductDaoMem.getInstance();
+            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+            SupplierDaoMem supplierService = SupplierDaoMem.getInstance();
+            ProductService productService = new ProductService(productDataStore, productCategoryDataStore, supplierService);
+            List<Product> products = productService.getProductsForSupplier(parameter);
+            Gson gson = new Gson();
+            PrintWriter out = response.getWriter();
+            out.write(gson.toJson(products));
+        } else {
+            ProductDaoMem products = ProductDaoMem.getInstance();
+            Gson gson = new Gson();
+            PrintWriter out = response.getWriter();
+            out.write(gson.toJson(products.getAll()));
+        }
     }
 }

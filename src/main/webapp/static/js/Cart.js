@@ -24,7 +24,7 @@ editQuantityButton.forEach(button => button.addEventListener('click', async func
         document.getElementsByName(Math.abs(id))[1].textContent = data[1]
         document.getElementsByName(Math.abs(id))[2].textContent = data[0]
     }
-    document.getElementById("checkout-btn").textContent = data[2]
+    document.getElementById("checkout-btn").textContent = `Checkout ${data[2]}$`
 }))
 
 
