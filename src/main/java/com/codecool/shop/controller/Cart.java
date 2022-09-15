@@ -13,7 +13,7 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = {"/cart"})
-public class cart extends HttpServlet {
+public class Cart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
