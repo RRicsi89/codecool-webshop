@@ -27,10 +27,10 @@ public class ChangeCart extends HttpServlet {
         Product product = null;
         if (productId > 0) {
             product = products.find(productId);
-            cart.addProductByAddToCart(product);
+            cart.addProduct(product);
         } else if (productId < 0) {
             product = products.find(productId * -1);
-            cart.descentProductQuantity(product);
+            cart.decreaseProductQuantity(product);
         }
         Integer quantity = cart.getItemQuantity(product);
         BigDecimal value = cart.getItemsTotalValue(product);

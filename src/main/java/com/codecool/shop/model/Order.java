@@ -56,7 +56,7 @@ public class Order {
     public List<Item> getCart () {return cart;}
 
 
-    public void addProductByAddToCart(Product product) {
+    public void addProduct(Product product) {
         for (Item item: cart) {
             if (item.product.equals(product)) {
                 item.setQuantity(item.quantity + 1);
@@ -67,7 +67,7 @@ public class Order {
     }
 
 
-    public void descentProductQuantity(Product product) {
+    public void decreaseProductQuantity(Product product) {
         for (Item item: cart) {
             if (item.product.equals(product)) {
                 if (item.quantity -1 > 0) {

@@ -2,6 +2,7 @@ let addToCartButtons = document.querySelectorAll(".add-to-cart")
 let cartButton = document.querySelector(".cart")
 let editQuantityButton = document.querySelectorAll(".edit-quantity")
 
+
 async function addProduct(productId) {
     let response = await fetch(`/api/addToCart?product-id=${productId}`)
     return response.json()
@@ -26,15 +27,16 @@ editQuantityButton.forEach(button => button.addEventListener('click', async func
 }))
 
 
-
 addToCartButtons.forEach(button => button.addEventListener('click', async function (){
     let id = button.id
     cartButton.textContent = await addProduct(id)
 }))
 
+
 async function setCartButton() {
     cartButton.textContent = await addProduct(0);
 }
+
 
 if(cartButton !== null) {
     setCartButton()

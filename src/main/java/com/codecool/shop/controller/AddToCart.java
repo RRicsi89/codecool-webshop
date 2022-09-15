@@ -23,10 +23,10 @@ public class AddToCart extends HttpServlet {
         Order cart = Order.getInstance();
         if (productId > 0) {
             Product product = products.find(productId);
-            cart.addProductByAddToCart(product);
+            cart.addProduct(product);
         } else if (productId < 0) {
             Product product = products.find(productId * -1);
-            cart.descentProductQuantity(product);
+            cart.decreaseProductQuantity(product);
         }
         Integer quantity = cart.getItemsQuantity();
         String json = new Gson().toJson(quantity);
