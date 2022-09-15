@@ -36,4 +36,14 @@ public class ProductController extends HttpServlet {
         engine.process("product/index.html", context, resp.getWriter());
     }
 
+    @Override
+    protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("head");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("post");
+    }
+
 }
