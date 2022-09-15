@@ -16,8 +16,25 @@
     top: 10vh;
 }
 
+.checkout-col {
+    padding: 20px;
+}
+
+#checkout-form {
+    display: flex;
+    flex-direction: row;
+}
+
 #cancel-order-btn {
     font-size: 25px; !important;
+}
+
+.error-msg {
+    position: center;
+    display: flex;
+    margin: -10vh auto auto auto;
+    justify-content: center;
+    font-size: 25px;
 }
 
 .home-link {
@@ -66,7 +83,7 @@
     display: flex;
     flex-direction: column;
     background-color: dimgrey;
-    width: 40vw;
+    width: max-content;
     height: max-content;
     border-radius: 10px;
     border: white solid 3px;
