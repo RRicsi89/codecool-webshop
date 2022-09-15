@@ -54,15 +54,15 @@ function createModalBody() {
         "<label for='b-address'>CCV coder</label></br>" +
         "<input type='text' name='b-address' id='b-address' required></br></br>" +
 
-        "<label>Shipping Address</label></br></br>" +
+        "<label>Shipping Address(optional)</label></br></br>" +
         "<label for='sh-country'>CCV coder</label></br>" +
-        "<input type='text' name='sh-country' id='sh-country' required></br></br>" +
+        "<input type='text' name='sh-country' id='sh-country'></br></br>" +
         "<label for='sh-city'>CCV coder</label></br>" +
-        "<input type='text' name='sh-city' id='sh-city' required></br></br>" +
+        "<input type='text' name='sh-city' id='sh-city'></br></br>" +
         "<label for='sh-zipcode'>CCV coder</label></br>" +
-        "<input type='number' name='sh-zipcode' id='sh-zipcode' required></br></br>" +
+        "<input type='number' name='sh-zipcode' id='sh-zipcode'></br></br>" +
         "<label for='sh-address'>CCV coder</label></br>" +
-        "<input type='text' name='sh-address' id='sh-address' required></br></br>" +
+        "<input type='text' name='sh-address' id='sh-address'></br></br>" +
         "</form>"
     return modalBody;
 }

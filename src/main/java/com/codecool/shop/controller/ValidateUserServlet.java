@@ -22,10 +22,20 @@ public class ValidateUserServlet extends HttpServlet {
                 request.getParameter("b-city"),
                 Integer.parseInt(request.getParameter("b-zipcode")),
                 request.getParameter("b-address"));
-        Address shipping = new Address(request.getParameter("sh-country"),
-                request.getParameter("sh-city"),
-                Integer.parseInt(request.getParameter("sh-zipcode")),
-                request.getParameter("sh-address"));
+        Address shipping;
+
+        if (request.getParameter("sh-country") == null
+                || request.getParameter("sh-city") == null
+                || request.getParameter("sh-zipcode") == null
+                || request.getParameter("sh-address") == null) {
+            shipping = billing;
+        } else {
+            shipping = new Address(request.getParameter("sh-country"),
+                    request.getParameter("sh-city"),
+                    Integer.parseInt(request.getParameter("sh-zipcode")),
+                    request.getParameter("sh-address"));
+        }
+
         User user = new User(username, email, phoneNumber, billing, shipping);
 
         Order order = Order.getInstance();
