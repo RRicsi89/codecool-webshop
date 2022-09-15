@@ -42,5 +42,10 @@ public class ProductService{
         return productDao.getBy(category);
     }
 
+    public List<Product> getProductsForSupplier(String name) {
+        Supplier supplier = supplierDao.find(name);
+        return productDao.getBy(supplier);
+    }
+
 
 }
