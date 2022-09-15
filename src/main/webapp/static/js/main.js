@@ -1,3 +1,9 @@
+async function handleCategory() {
+    const products = await getProductsByCategory();
+    cardBuilder(products);
+}
+
+
 function cardBuilder(products) {
     const productsDiv = document.getElementById("products");
     productsDiv.innerHTML = "";
