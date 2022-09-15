@@ -1,3 +1,9 @@
+async function handleSupplier() {
+    const products = await getProductsBySupplier();
+    cardBuilder(products);
+}
+
+
 async function handleCategory() {
     const products = await getProductsByCategory();
     cardBuilder(products);
