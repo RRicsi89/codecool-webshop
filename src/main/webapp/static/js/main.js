@@ -39,6 +39,8 @@ function cardBuilder(products) {
         const cartBtnContainer = elementCreator("div", "card-text");
         const cartButton = elementCreator("a", "btn-success");
         cartButton.classList.add("btn");
+        cartButton.classList.add("add-to-cart");
+        cartButton.id = product.id;
         cardHeaderText.classList.add("price");
         cardHeaderText.classList.add("desc");
 
@@ -46,8 +48,13 @@ function cardBuilder(products) {
         cardTitle.textContent = product.name;
         cardHeaderText.textContent = product.description;
         cardBodyText.textContent = product.defaultPrice;
-        cartButton.href = "#";
         cartButton.textContent = "Add to cart";
+
+        cartButton.addEventListener("click", async function() {
+            const id = cartButton.id
+            const cart = document.querySelector(".cart");
+            cart.textContent = await addProduct(id);
+        })
 
         card.appendChild(image);
         card.appendChild(cardHeader);
