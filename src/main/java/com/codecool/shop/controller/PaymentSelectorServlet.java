@@ -25,6 +25,12 @@ public class PaymentSelectorServlet extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
         context.setVariable("total", totalPrice);
+        boolean redirected = false;
+
+        if (request.getMethod().equals("GET")) {
+            redirected = true;
+        }
+        context.setVariable("redirected", redirected);
 
         engine.process("product/payment.html", context, response.getWriter());
     }
