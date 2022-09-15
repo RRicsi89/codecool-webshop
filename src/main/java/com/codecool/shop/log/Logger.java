@@ -37,7 +37,7 @@ public class Logger {
 
     private static LogOrder createLogOrder(Order order, boolean paid) {
 
-        LogOrder logOrder = new LogOrder(order.getId(), paid);
+        LogOrder logOrder = new LogOrder(order.getId(), paid, order.getUser());
 
         List<Item> items = order.getCart();
 

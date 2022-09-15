@@ -21,11 +21,9 @@
 }
 
 .error-msg {
-    position: relative;
+    position: center;
     display: flex;
     margin: -10vh auto auto auto;
-    left: 0;
-    right: 0;
     justify-content: center;
     font-size: 25px;
 }

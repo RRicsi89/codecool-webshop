@@ -9,9 +9,11 @@ public class LogOrder {
     private final UUID id;
     private final List<LogItem> items;
     private final String status;
+    private final User user;
 
-    public LogOrder(UUID id, boolean paid) {
+    public LogOrder(UUID id, boolean paid, User user) {
         this.id = id;
+        this.user = user;
         items = new LinkedList<>();
         if (paid) {
             this.status = "Successful";
