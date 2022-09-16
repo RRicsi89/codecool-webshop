@@ -76,7 +76,7 @@ function createModalBody() {
 function applyEventListenerToCheckoutBtn() {
     const checkoutBtn = document.querySelector("#checkout-btn");
     checkoutBtn.addEventListener("click", () => {
-        const modal = createCheckoutForm("creditCard", "Credit Card Information");
+        const modal = createCheckoutForm();
         const layer = document.createElement("div");
         layer.classList.add("layer");
         document.body.appendChild(modal);

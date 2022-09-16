@@ -27,7 +27,6 @@ public class PaymentSelectorServlet extends HttpServlet {
         WebContext context = new WebContext(request, response, request.getServletContext());
         context.setVariable("total", totalPrice);
         boolean redirected = false;
-        System.out.println(request.getHeader("Referer"));
 
         if (request.getHeader("Referer").equals("http://localhost:8080/payment")) {
             redirected = true;
