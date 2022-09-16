@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.log.Logger;
 import com.codecool.shop.model.Order;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ public class DeleteOrderServlet extends HttpServlet {
     public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.addHeader("Access-Control-Allow-Origin", "*");
 
+        Order order = Order.getInstance();
+        Logger.logToFile(order, false);
         Order.deleteOrder();
         // TODO implement OrderDaoMem delete method
 
