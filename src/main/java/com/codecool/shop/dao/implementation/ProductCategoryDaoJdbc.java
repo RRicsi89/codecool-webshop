@@ -37,6 +37,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             statement.setString(1, category.getName());
             statement.setInt(2, getDepartmentIdByName(category.getDepartment()));
             statement.setString(3, category.getDescription());
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

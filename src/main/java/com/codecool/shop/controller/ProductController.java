@@ -1,12 +1,13 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.ConfigParser;
+import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.DatabaseManager;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.UserDao;
 import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.service.ProductService;
-import com.codecool.shop.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -57,7 +59,21 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("post");
+        Properties props = ConfigParser.parseConfigFile("connection.properties");
+        DataSource dataSource = DatabaseManager.connect();
+        UserDao userManager = UserDaoJdbc.getInstance(dataSource);
+        String name = req.getParameter("name");
+        String password = req.getParameter("password");
+
+        if (props.getProperty("dao").equals("jdbc")) {
+            Map<String, String> users = userManager.getAllUsers();
+            if (users.containsKey(name) || users.containsValue(password)) {
+                doGet(req, resp);
+            } else {
+                userManager.registerUser(name, password);
+            }
+            doGet(req, resp);
+        }
     }
 
 }
