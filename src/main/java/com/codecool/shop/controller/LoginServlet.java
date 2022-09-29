@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 
@@ -26,9 +27,9 @@ public class LoginServlet extends HttpServlet {
         SessionUser sessionUser = userManager.getUserBy(name, hashedPassword);
 
         if (sessionUser != null) {
-            ProductController.userName = sessionUser.getName();
+//            HttpSession session = req.getSession();
             ProductController.userId = sessionUser.getId();
         }
-        resp.sendRedirect("index");
+        resp.sendRedirect("/");
     }
 }

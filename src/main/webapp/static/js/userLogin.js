@@ -1,9 +1,9 @@
 
-function createModal(message) {
+function createLoginModal(message) {
     const modal = document.createElement("div");
-    const modalBody = createModalBody();
-    const modalHeader = createModalHeader();
-    const modalFooter = createModalFooter(message);
+    const modalBody = createLoginModalBody();
+    const modalHeader = createLoginModalHeader();
+    const modalFooter = createLoginModalFooter(message);
 
     const modalContainer = document.createElement("div");
     modalContainer.classList.add("modal");
@@ -15,7 +15,7 @@ function createModal(message) {
     return modalContainer;
 }
 
-function createModalFooter(message) {
+function createLoginModalFooter(message) {
     const modalFooter = document.createElement("div");
     modalFooter.classList.add("modal-footer");
     const submitBtn = document.createElement("button");
@@ -31,14 +31,14 @@ function createModalFooter(message) {
     return modalFooter;
 }
 
-function createModalHeader() {
+function createLoginModalHeader() {
     const modalHeader = document.createElement("div");
     modalHeader.innerText = "User information";
     modalHeader.classList.add("modal-header");
     return modalHeader;
 }
 
-function createModalBody() {
+function createLoginModalBody() {
     const modalBody = document.createElement("div");
     modalBody.classList.add("modal-body");
     modalBody.innerHTML =
@@ -54,7 +54,7 @@ function createModalBody() {
 function applyEventListenerToLoginBtn() {
     const loginBtn = document.querySelector("#login-btn");
     loginBtn.addEventListener("click", () => {
-        const modal = createModal("Login");
+        const modal = createLoginModal("Login");
         const layer = document.createElement("div");
         layer.classList.add("layer");
         document.body.appendChild(modal);

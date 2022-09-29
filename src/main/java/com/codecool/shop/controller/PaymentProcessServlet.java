@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
@@ -48,6 +49,7 @@ public class PaymentProcessServlet extends HttpServlet {
 
         if (paymentCheck) {
             context.setVariable("cart", order.getCart());
+//            HttpSession session = request.getSession();
             int userId = ProductController.userId;
             Logger.logToFile(order, true);
             List<Item> items = order.getCart();
