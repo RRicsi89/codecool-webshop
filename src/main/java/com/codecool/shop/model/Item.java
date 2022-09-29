@@ -17,4 +17,12 @@ public class Item {
         this.quantity = quantity;
         this.totalPrice = BigDecimal.valueOf(quantity).multiply(product.getDefaultPrice());
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
 }

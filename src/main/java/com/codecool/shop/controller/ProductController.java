@@ -22,8 +22,11 @@ import java.util.Map;
 import java.util.Properties;
 
 
-@WebServlet(urlPatterns = {"/"})
+@WebServlet(name = "index" , urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
+
+    public static String userName;
+    public static int userId;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,21 +62,7 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Properties props = ConfigParser.parseConfigFile("connection.properties");
-        DataSource dataSource = DatabaseManager.connect();
-        UserDao userManager = UserDaoJdbc.getInstance(dataSource);
-        String name = req.getParameter("name");
-        String password = req.getParameter("password");
-
-        if (props.getProperty("dao").equals("jdbc")) {
-            Map<String, String> users = userManager.getAllUsers();
-            if (users.containsKey(name) || users.containsValue(password)) {
-                doGet(req, resp);
-            } else {
-                userManager.registerUser(name, password);
-            }
-            doGet(req, resp);
-        }
+        doGet(req, resp);
     }
 
 }

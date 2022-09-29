@@ -27,8 +27,11 @@
     <!-- End of Bootstrap components -->
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/payment.css" />
 
     <script src="static/js/main.js" defer></script>
+    <script src="static/js/userLogin.js" defer></script>
+    <script src="static/js/registerUser.js" defer></script>
 
     <script src="../../static/js/Cart.js" defer></script>
 
@@ -42,6 +45,14 @@
     </div>
 </header>
 <div class="container">
+    <div class="user-btns">
+        <div>
+            <button id="login-btn">LogIn</button>
+        </div>
+        <div>
+            <button id="register-btn">Register</button>
+        </div>
+    </div>
     <div>
         <strong>Select a category</strong>
         <select id="category-selector" onchange="handleCategory()">
