@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ProductCategoryDaoJdbc implements ProductCategoryDao {
@@ -83,7 +84,28 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public List<ProductCategory> getAll() {
-        return null;
+        try(Connection connection = dataSource.getConnection()) {
+            String SQL = "SELECT *, d.name FROM categories " +
+                    "JOIN departments AS d " +
+                    "ON categories.department_id = d.id";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            ResultSet resultSet = statement.executeQuery();
+            List<ProductCategory> categories = new LinkedList<>();
+
+            while (resultSet.next()) {
+                ProductCategory category = new ProductCategory(
+                        resultSet.getString(2),
+                        resultSet.getString(5),
+                        resultSet.getString(4)
+                );
+                category.setId(resultSet.getInt(1));
+                categories.add(category);
+            }
+
+            return categories;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public ProductCategory getCategoryBy(int id) {
@@ -95,12 +117,15 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            ProductCategory category = new ProductCategory(
-                    resultSet.getString(1),
-                    resultSet.getString(5),
-                    resultSet.getString(4)
-            );
+
+            ProductCategory category = null;
+            while (resultSet.next()) {
+                category = new ProductCategory(
+                        resultSet.getString(2),
+                        resultSet.getString(5),
+                        resultSet.getString(4)
+                );
+            }
             return category;
         } catch (SQLException e) {
             throw new RuntimeException(e);
