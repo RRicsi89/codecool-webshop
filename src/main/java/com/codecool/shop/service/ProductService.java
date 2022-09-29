@@ -3,6 +3,8 @@ package com.codecool.shop.service;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductDaoJdbc;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -20,6 +22,12 @@ public class ProductService{
     }
 
     public ProductService(ProductDao productDao, ProductCategoryDao productCategoryDao, SupplierDao supplierDao) {
+        this.productDao = productDao;
+        this.productCategoryDao = productCategoryDao;
+        this.supplierDao = supplierDao;
+    }
+
+    public ProductService(ProductDaoJdbc productDao, ProductCategoryDaoJdbc productCategoryDao, SupplierDao supplierDao) {
         this.productDao = productDao;
         this.productCategoryDao = productCategoryDao;
         this.supplierDao = supplierDao;

@@ -3,6 +3,8 @@ package com.codecool.shop.dao;
 import javax.sql.DataSource;
 
 import com.codecool.shop.config.ConfigParser;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductDaoJdbc;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import java.sql.SQLException;
@@ -27,7 +29,6 @@ public class DatabaseManager {
 
     public void setup() {
         DataSource dataSource = connect();
-        // TODO implement jdbc daos
     }
 
     public void run() {
