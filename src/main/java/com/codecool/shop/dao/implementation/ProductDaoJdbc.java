@@ -49,13 +49,14 @@ public class ProductDaoJdbc implements ProductDao {
     @Override
     public List<Product> getAll() {
         try(Connection connection = dataSource.getConnection()) {
-            String SQL = "SELECT * FROM products " +
+            String SQL = "SELECT DISTINCT * FROM products " +
                     "JOIN product_categories AS pc " +
-                    "ON products.id = pc.product_id " +
-                    "JOIN suppliers s on products.supplier_id = s.id ";
+                    "ON products.id = pc.product_id ";
+
             PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet resultSet = statement.executeQuery();
-            List<Product> products = new LinkedList<>();
+            Set<Product> products = new HashSet<>();
+
             while (resultSet.next()) {
                 Set<ProductCategory> categories = new HashSet<>();
                 int productID = resultSet.getInt(1);
@@ -63,19 +64,20 @@ public class ProductDaoJdbc implements ProductDao {
                 ids.forEach(id -> categories.add(productCategoryDaoJdbc.getCategoryBy(id)));
                 int n = categories.size();
                 ProductCategory[] productCategories = new ProductCategory[n];
+                Supplier supplier = getSupplierById(resultSet.getInt(5));
                 System.arraycopy(categories.toArray(), 0, productCategories, 0, n);
                 Product newProduct = new Product(
                         resultSet.getString(2),
                         resultSet.getBigDecimal(3),
                         resultSet.getString(4),
-                        resultSet.getString(7),
-                        getSupplierByProductId(productID),
+                        resultSet.getString(6),
+                        supplier,
                         productCategories
                 );
                 newProduct.setId(productID);
                 products.add(newProduct);
             }
-            return products;
+            return new LinkedList<>(products);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -89,7 +91,7 @@ public class ProductDaoJdbc implements ProductDao {
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
         try(Connection connection = dataSource.getConnection()) {
-            String SQL = "SELECT *, s.name FROM products " +
+            String SQL = "SELECT * FROM products " +
                     "JOIN product_categories AS pc " +
                     "ON products.id = pc.product_id " +
                     "JOIN suppliers s on products.supplier_id = s.id " +
@@ -106,12 +108,13 @@ public class ProductDaoJdbc implements ProductDao {
                 int n = categories.size();
                 ProductCategory[] productCategories = new ProductCategory[n];
                 System.arraycopy(categories.toArray(), 0, productCategories, 0, n);
+                Supplier supplier = getSupplierById(resultSet.getInt(5));
                 Product newProduct = new Product(
                         resultSet.getString(2),
                         resultSet.getBigDecimal(3),
                         resultSet.getString(4),
                         resultSet.getString(7),
-                        getSupplierByProductId(productID),
+                        supplier,
                         productCategories
                 );
                 newProduct.setId(productID);
@@ -123,18 +126,21 @@ public class ProductDaoJdbc implements ProductDao {
         }
     }
 
-    private Supplier getSupplierByProductId(int id) {
+    private Supplier getSupplierById(int id) {
         try (Connection connection = dataSource.getConnection()) {
             String SQL = "SELECT * FROM suppliers " +
                     "WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            Supplier supplier = new Supplier(
-                    resultSet.getString(2),
-                    resultSet.getString(3)
-            );
+
+            Supplier supplier = null;
+            while (resultSet.next()) {
+                supplier = new Supplier(
+                        resultSet.getString(2),
+                        resultSet.getString(3)
+                );
+            }
             return supplier;
         } catch (SQLException e) {
             throw new RuntimeException(e);

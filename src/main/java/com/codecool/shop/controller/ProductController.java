@@ -34,7 +34,7 @@ public class ProductController extends HttpServlet {
         if (props.getProperty("dao").equals("jdbc")) {
             DataSource dataSource = DatabaseManager.connect();
             productDataStore = ProductDaoJdbc.getInstance(dataSource);
-            productCategoryDataStore = (ProductCategoryDaoJdbc) ProductCategoryDaoJdbc.getInstance(dataSource);
+            productCategoryDataStore = ProductCategoryDaoJdbc.getInstance(dataSource);
             productService = new ProductService(productDataStore, productCategoryDataStore, supplierService);
         } else {
             productDataStore = ProductDaoMem.getInstance();
@@ -48,7 +48,6 @@ public class ProductController extends HttpServlet {
         context.setVariable("products", productService.getAll());
         context.setVariable("suppliers", supplierService.getAll());
         engine.process("product/index.html", context, resp.getWriter());
-        System.out.println(productService.getAll());
     }
 
     @Override
