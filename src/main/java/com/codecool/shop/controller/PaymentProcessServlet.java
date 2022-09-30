@@ -50,13 +50,15 @@ public class PaymentProcessServlet extends HttpServlet {
         if (paymentCheck) {
             context.setVariable("cart", order.getCart());
 //            HttpSession session = request.getSession();
-            int userId = ProductController.userId;
             Logger.logToFile(order, true);
-            List<Item> items = order.getCart();
-            for (Item item: items) {
-                int productId = item.getProduct().getId();
-                int quantity = item.getQuantity();
-                userManager.saveUserOrder(userId, productId, quantity);
+            if (ProductController.userId != 0) {
+                int userId = ProductController.userId;
+                List<Item> items = order.getCart();
+                for (Item item: items) {
+                    int productId = item.getProduct().getId();
+                    int quantity = item.getQuantity();
+                    userManager.saveUserOrder(userId, productId, quantity);
+                }
             }
             Order.deleteOrder();
             engine.process("product/confirmation.html", context, response.getWriter());
