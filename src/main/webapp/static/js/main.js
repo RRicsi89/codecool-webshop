@@ -51,7 +51,7 @@ function cardBuilder(products) {
 
         image.src = "/static/img/product_"+product.id+".jpg";
         cardTitle.textContent = product.name;
-        cardHeaderText.textContent = product.description;
+        cardHeaderText.textContent = product["description"];
         cardBodyText.textContent = product.defaultPrice;
         cartButton.textContent = "Add to cart";
 

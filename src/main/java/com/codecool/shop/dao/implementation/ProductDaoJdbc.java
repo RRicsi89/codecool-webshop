@@ -75,6 +75,7 @@ public class ProductDaoJdbc implements ProductDao {
                         supplier,
                         productCategories
                 );
+                System.out.println(resultSet.getString(6));
                 newProduct.setId(productID);
                 products.add(newProduct);
             }
@@ -114,7 +115,7 @@ public class ProductDaoJdbc implements ProductDao {
                         resultSet.getString(2),
                         resultSet.getBigDecimal(3),
                         resultSet.getString(4),
-                        resultSet.getString(7),
+                        resultSet.getString(6),
                         supplier,
                         productCategories
                 );
