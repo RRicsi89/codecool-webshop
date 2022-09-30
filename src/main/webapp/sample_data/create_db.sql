@@ -41,6 +41,7 @@ CREATE TABLE public.orders (
     id SERIAL NOT NULL PRIMARY KEY,
     user_id INTEGER,
     product_id INTEGER,
+    quantity INTEGER,
     checkout_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
